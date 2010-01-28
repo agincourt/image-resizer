@@ -17,7 +17,7 @@ class AssetsController < ApplicationController
         session[:assets] ||= []
         session[:assets] <<  @asset.identifier
         # respond
-        format.html { redirect_to asset_path(@asset.identifier) }
+        format.html { redirect_to new_asset_resize_path(@asset.identifier) }
         format.xml  { render :xml => @asset, :status => :created }
       else
         format.html { render :action => 'new' }

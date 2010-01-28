@@ -7,6 +7,11 @@ class ResizesController < ApplicationController
   def create
     @token = @asset.custom_resize(:params => params[:resize])
     @resized_file = @asset.resize_url(@token)
+    
+    respond_to do |format|
+      format.html
+      format.xml { render :xml => { :token => @token, :url => @resized_file } }
+    end
   end
   
   def show
