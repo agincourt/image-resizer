@@ -1,0 +1,32 @@
+#editor_bg
+
+.resizable= image_tag @asset.attachment.url(:compressed), :id => 'source'
+
+%form#editor_controls{ :action => asset_resizes_path(@asset.identifier), :method => 'post' }
+  %input{ :type => 'hidden', :name => 'authenticity_token', :value => form_authenticity_token }
+  
+  %input{ :type => 'hidden', :id => 'original_width',  :value => 0 }
+  %input{ :type => 'hidden', :id => 'original_height', :value => 0 }
+  %input{ :type => 'hidden', :id => 'constrain_dimensions', :value => 1 }
+
+  .set
+    %h2 Dimensions / Resizing
+    .dimensions
+      %label W:
+      %input{ :name => 'resize[width]', :type => 'text', :id => 'image_width' }
+      %span x
+      %label H:
+      %input{ :name => 'resize[height]', :type => 'text', :id => 'image_height' }
+      %a.constrain.active
+  
+  .set
+    %h2 Cropping
+    .cropping
+      %input{ :name => 'resize[top]',    :type => 'text', :id => 'image_top',    :value => 0 }
+      %input{ :name => 'resize[left]',   :type => 'text', :id => 'image_left',   :value => 0 }
+      %input{ :name => 'resize[bottom]', :type => 'text', :id => 'image_bottom', :value => 0 }
+      %input{ :name => 'resize[right]',  :type => 'text', :id => 'image_right',  :value => 0 }
+      %input{ :type => 'text', :id => 'image_dimensions', :disabled => true }
+
+  .actions
+    %button{ :type => 'submit' } Submit

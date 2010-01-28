@@ -1,0 +1,12 @@
+== About
+
+This is a standalone Rails application that allows anyone to setup an image resizing service. This is useful for web designer's clients using content management systems who don't want to be using Photoshop to resize their images, but things like Microsoft Picture Manager doesn't allow cropping to particular sizes etc.
+
+== Requirements
+
+Gems:
+
+* SQLite3 (if the database file is left as default)
+* Paperclip (http://gemcutter.org/gems/paperclip)
+
+== Install

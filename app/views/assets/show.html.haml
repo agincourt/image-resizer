@@ -1,0 +1,10 @@
+%h1= File.basename(@asset.attachment.path)
+
+%p
+  = link_to '&laquo; View all uploaded files', assets_path
+  |
+  = link_to 'Resize this image', new_asset_resize_path(@asset.identifier)
+
+%p= image_tag @asset.attachment.url(:thumbnail)
+
+%p Images are automatically deleted after 7 days.

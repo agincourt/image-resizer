@@ -1,0 +1,12 @@
+%h1 Upload an image
+
+- form_for(@asset, :html => { :multipart => true }) do |f|
+  = f.error_messages
+  
+  = f.file_field :attachment
+  
+  %button{ :type => 'submit' } Upload &raquo;
+  
+%p Note: Images are automatically deleted after 7 days. 
+
+%p This service is provided without warranty or guarantee, do not upload sensitive files, we do not protect any confidential information. Use at your own risk.

@@ -1,0 +1,91 @@
+#editor_bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  background: #eee url(../images/editor_bg.png) top left repeat; }
+
+#editor_controls {
+  width: 200px;
+  padding: 10px;
+  border: 1px solid #000;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 999999;
+  background: #000;
+  background: rgba(0,0,0,0.8);
+  color: #fff;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px; }
+  #editor_controls .set {
+    margin: 0 0 20px; }
+    #editor_controls .set h2 {
+      margin: 0;
+      padding: 0;
+      font-size: 11px;
+      text-transform: uppercase; }
+    #editor_controls .set input {
+      width: 50px;
+      padding: 3px;
+      border: 0;
+      outline: 0;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px; }
+    #editor_controls .set label {
+      font-weight: bold; }
+    #editor_controls .set span {
+      color: #aaa; }
+    #editor_controls .set .cropping {
+      width: 200px;
+      height: 160px;
+      position: relative;
+      background: transparent url(/images/cropping_bg.png) center no-repeat; }
+      #editor_controls .set .cropping input {
+        width: 40px;
+        padding: 3px 0;
+        position: absolute;
+        text-align: center; }
+      #editor_controls .set .cropping #image_left {
+        top: 69px;
+        left: 13px; }
+      #editor_controls .set .cropping #image_right {
+        top: 69px;
+        right: 13px; }
+      #editor_controls .set .cropping #image_top {
+        top: 18px;
+        left: 81px; }
+      #editor_controls .set .cropping #image_bottom {
+        bottom: 18px;
+        left: 81px; }
+      #editor_controls .set .cropping #image_dimensions {
+        width: 70px;
+        padding: 12px 0 13px;
+        top: 59px;
+        left: 65px;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0; }
+    #editor_controls .set .constrain {
+      width: 16px;
+      height: 16px;
+      vertical-align: middle;
+      top: -2px;
+      left: 2px;
+      position: relative;
+      display: inline-block;
+      background: transparent url(/images/unconstrained.png) center no-repeat;
+      text-indent: -9999px;
+      cursor: pointer; }
+      #editor_controls .set .constrain.active {
+        background-image: url(/images/constrained.png); }
+
+.resizable {
+  margin: 0 auto; }
+
+body {
+  font: 12px/1.5 'lucida grande', helvetica, arial, sans-serif; }

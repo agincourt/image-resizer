@@ -1,0 +1,10 @@
+%h1 Your Uploaded Files
+
+%p Click an image below to edit it.
+
+%p.assets
+  - for asset in @assets do
+    %a{ :href => asset_path(asset.identifier) }
+      = image_tag asset.attachment.url(:thumbnail)
+      
+%p Images are automatically deleted after 7 days.

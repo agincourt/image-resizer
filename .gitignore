@@ -1,0 +1,10 @@
+.DS_Store
+*/.DS_Store
+log/*.log
+db/backup/*
+db/*.sqlite3
+db/schema.rb
+tmp/*
+coverage
+coverage.data
+public/system
