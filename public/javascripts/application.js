@@ -32,13 +32,21 @@ $(document).ready(function(){
 		resizable.width($(this).width()).height($(this).height())
   })
   
-  $('#image_width').change(updateDimensions)
-  $('#image_height').change(updateDimensions)
+  $('#image_width').change(updateDimensions).keyup(updateDimensions)
+  $('#image_height').change(updateDimensions).keyup(updateDimensions)
   
   $('a.constrain').click(function() {
     $(this).toggleClass('active')
     $('#constrain_dimensions').val(parseInt($('#constrain_dimensions').val()) == 1 ? '0' : '1')
   })
+  
+  $('.upload form').submit(function() {
+    $(this).find('.loading').show()
+  })
+  
+  $('.upload form .loading').hide()
+  
+  savable_forms()
 })
 
 var updateCoords = function(c) {

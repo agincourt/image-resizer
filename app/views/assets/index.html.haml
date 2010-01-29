@@ -1,10 +1,11 @@
 %h1 Your Uploaded Files
 
-%p Click an image below to edit it.
+%p.preview Click an image below to edit it. Images are wiped within 7 days.
 
 %p.assets
   - for asset in @assets do
     %a{ :href => asset_path(asset.identifier) }
       = image_tag asset.attachment.url(:thumbnail)
-      
-%p Images are automatically deleted after 7 days.
+
+
+%p.actions= link_to @assets.length > 0 ? 'Upload another image' : 'Upload an image', new_asset_path, :class => 'focus'

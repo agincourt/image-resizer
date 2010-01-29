@@ -5,18 +5,18 @@
 %form#editor_controls{ :action => asset_resizes_path(@asset.identifier), :method => 'post' }
   %input{ :type => 'hidden', :name => 'authenticity_token', :value => form_authenticity_token }
   
-  %input{ :type => 'hidden', :id => 'original_width',  :value => 0 }
-  %input{ :type => 'hidden', :id => 'original_height', :value => 0 }
+  %input{ :type => 'hidden', :id => 'original_width',  :value => 0, :maxlength => 4 }
+  %input{ :type => 'hidden', :id => 'original_height', :value => 0, :maxlength => 4 }
   %input{ :type => 'hidden', :id => 'constrain_dimensions', :value => 1 }
 
   .set
     %h2 Dimensions / Resizing
     .dimensions
       %label W:
-      %input{ :name => 'resize[width]', :type => 'text', :id => 'image_width' }
+      %input{ :name => 'resize[width]', :type => 'text', :id => 'image_width', :autocomplete => 'off', :maxlength => 4 }
       %span x
       %label H:
-      %input{ :name => 'resize[height]', :type => 'text', :id => 'image_height' }
+      %input{ :name => 'resize[height]', :type => 'text', :id => 'image_height', :autocomplete => 'off', :maxlength => 4 }
       %a.constrain.active
   
   .set

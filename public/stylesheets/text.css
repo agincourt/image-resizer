@@ -1,2 +1,14 @@
 body {
-  font: 12px/1.5 'lucida grande', helvetica, arial, sans-serif; }
+  font: 12px/1.5 'lucida grande', helvetica, arial, sans-serif;
+  color: #fff;
+  text-shadow: #212329 0 1px 0; }
+
+a {
+  color: #fff; }
+
+p.sub {
+  font-size: 11px;
+  color: #767c8d; }
+
+.intro .box h2 {
+  color: #212329; }

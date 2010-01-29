@@ -1,10 +1,12 @@
 %h1 Your new image is below!
 
-%p
-  = link_to 'Edit again', new_asset_resize_path(@asset.identifier)
+%p.actions
+  = link_to '&laquo; Edit again', new_asset_resize_path(@asset.identifier)
   |
   = link_to 'View all uploaded files', assets_path
   |
-  = link_to 'Download this image', asset_resize_path(@asset.identifier, @token)
+  = link_to 'Upload another', new_asset_path
+  |
+  = link_to 'Download this image &raquo;', asset_resize_path(@asset.identifier, @token), :class => 'focus'
 
-%p= image_tag(@resized_file)
+%p.preview= image_tag(@resized_file)

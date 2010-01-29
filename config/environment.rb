@@ -5,6 +5,9 @@ require File.join(File.dirname(__FILE__), 'boot')
 Rails::Initializer.run do |config|
   config.time_zone = 'London'
   # gems
-  config.gem 'paperclip'
+  config.gem 'SystemTimer', :lib => 'system_timer'
+  config.gem 'paperclip', :lib => 'paperclip'
   config.gem 'haml'
+  # we don't want active resource
+  config.frameworks -= [:active_resource]
 end

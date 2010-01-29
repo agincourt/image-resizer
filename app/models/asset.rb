@@ -1,5 +1,6 @@
 require 'digest/sha2'
 require 'ftools'
+require 'system_timer'
 
 class Asset < ActiveRecord::Base
   # mix-ins
@@ -13,6 +14,7 @@ class Asset < ActiveRecord::Base
   
   validates_attachment_presence :attachment
   validates_attachment_content_type :attachment, :content_type => ['image/pjpeg', 'image/gif', 'image/x-png', 'image/png', /^image\/jpe?g$/], :message => 'must be a JPEG, PNG or GIF image'
+  validates_attachment_size :attachment, :less_than => 10.megabytes
   
   # actions
   before_validation :generate_identifier
@@ -31,27 +33,28 @@ class Asset < ActiveRecord::Base
     save_to = "#{Rails.root}/public#{path}"
     # if the file doesn't already exist
     unless File.exist?(save_to)
-      # set up our options
-      options = {
-        :geometry => "#{params[:width]}x#{params[:height]}!",
-        :convert_options => "-crop #{params[:width] - params[:left] - params[:right]}x#{params[:height] - params[:top] - params[:bottom]}+#{params[:left]}+#{params[:top]}! -background white  -flatten", 
-        :format => :jpg,
-        :qualty => 100
-      }
-      # process the thumbnail
-      builder = Paperclip::Thumbnail.new(attachment, options)
-      thumbnail = builder.make
-      # save it
-      File.makedirs(File.dirname(save_to))
-      File.move(thumbnail.path, save_to)
-      File.chmod(0644, save_to)
-      thumbnail.close!
+      SystemTimer.timeout_after(30.seconds) do
+        # process the thumbnail
+        builder = Paperclip::Thumbnail.new(attachment, {
+          :geometry => "#{params[:width]}x#{params[:height]}!",
+          :convert_options => "-crop #{params[:width] - params[:left] - params[:right]}x#{params[:height] - params[:top] - params[:bottom]}+#{params[:left]}+#{params[:top]}! -background white  -flatten", 
+          :format => :jpg,
+          :qualty => 100
+        })
+        thumbnail = builder.make
+        # save it
+        File.makedirs(File.dirname(save_to))
+        File.move(thumbnail.path, save_to)
+        File.chmod(0644, save_to)
+        thumbnail.close!
+      end
     end
     
     options[:token]
   end
   
   def resize_url(token)
+    token.gsub!(/[^a-f0-9]/, '')
     "/system/attachments/#{id}/#{token}/#{File.basename(attachment.path)}"
   end
   
