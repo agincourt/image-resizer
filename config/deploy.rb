@@ -1,10 +1,16 @@
-require 'capistrano/ext/slicehost'
+unless Capistrano::Configuration.respond_to?(:instance)
+  raise StandardError, "Requires Capistrano 2"
+end
+
+Dir["#{File.dirname(__FILE__)}/deploy/*.rb"].each { |lib|
+  load(lib)
+}
 
 #############################################################
 #	Application
 #############################################################
 
-set :application, "minimise.it"
+set :application, "minimise"
 set :deploy_to, "/var/www/apps/#{application}"
 
 #############################################################
@@ -31,7 +37,7 @@ set :scm, "git"
 set :repository,  "git@github.com:agincourt/image-resizer.git"
 
 set :ssh_options, { :forward_agent => true }
-set :branch, "deploy"
+set :branch, "master"
 
 set :deploy_via, :remote_cache
 set :git_shallow_clone, 1
@@ -70,6 +76,16 @@ end
 #############################################################
 
 namespace :deploy do
+  task :spinup do
+    slice.configure
+    git.install
+    ruby.install_enterprise
+    ruby.install_passenger
+    gems.install_default
+    nginx.setup_default_site
+    nginx.start
+  end
+  
   task :start do
   end
   

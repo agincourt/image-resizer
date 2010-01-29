@@ -38,4 +38,12 @@ namespace :gems do
     name = Capistrano::CLI.ui.ask("Which gem should we uninstall: ")
     sudo "gem uninstall #{name}"
   end
+  
+  desc "Install initial requirements for the app"
+  task :install_defaults, :roles => :app do
+    sudo "gem install whenever --no-rdoc --no-ri"
+    sudo "gem install haml --no-rdoc --no-ri"
+    sudo "gem install paperclip --no-rdoc --no-ri"
+    sudo "gem install SystemTimer --no-rdoc --no-ri"
+  end
 end

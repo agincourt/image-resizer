@@ -51,9 +51,15 @@ namespace :nginx do
     sudo "ln -s /etc/nginx/sites-available/#{site} /etc/nginx/sites-enabled/#{site}"
     reload
   end
-
-  desc "Install Nginx"
-  task :install, :roles => :web do
-     sudo "aptitude install -y nginx"
+  
+  desc "Setup default Nginx site"
+  task :setup_default_site, :roles => :web do
+    domain = Capistrano::CLI.ui.ask("Which domain should we use: ")
+    # render and upload the file
+    put render("nginx_site", binding), "minimise"
+    # move it into place
+    sudo "mv minimise /etc/nginx/sites-available/minimise"
+    # enable the site
+    sudo "ln -s /etc/nginx/sites-available/minimise /etc/nginx/sites-enabled/minimise"
   end
 end
