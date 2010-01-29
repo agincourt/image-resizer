@@ -1,5 +1,6 @@
 require 'digest/sha2'
 require 'ftools'
+require 'fileutils'
 require 'system_timer'
 
 class Asset < ActiveRecord::Base
@@ -18,6 +19,7 @@ class Asset < ActiveRecord::Base
   
   # actions
   before_validation :generate_identifier
+  after_destroy :wipe_images
   
   def custom_resize(options = {})
     options[:params] ||= {}
@@ -59,6 +61,10 @@ class Asset < ActiveRecord::Base
   end
   
   private
+  def wipe_images
+    FileUtils.rm_rf("#{Rails.root}/public/system/attachments/#{id}")
+  end
+  
   def generate_identifier
     self.identifier ||= Digest::SHA512.hexdigest("#{Time.now}:#{rand(10000)}")[0..31]
   end

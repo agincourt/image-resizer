@@ -8,6 +8,7 @@ Rails::Initializer.run do |config|
   config.gem 'SystemTimer', :lib => 'system_timer'
   config.gem 'paperclip', :lib => 'paperclip'
   config.gem 'haml'
+  config.gem 'whenever', :lib => false
   # we don't want active resource
   config.frameworks -= [:active_resource]
 end
