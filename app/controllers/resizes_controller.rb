@@ -18,7 +18,7 @@ class ResizesController < ApplicationController
     if Rails.env == 'production'
       head(:x_accel_redirect => "#{Rails.root}/public#{@asset.resize_url(params[:id])}",  
         :content_type => 'image/jpeg',  
-        :content_disposition => "attachment; filename=\"#{@asset.attachment.filename}\"")
+        :content_disposition => "attachment; filename=\"#{File.basename(@asset.attachment.path)}\"")
     else
       send_file "#{Rails.root}/public#{@asset.resize_url(params[:id])}",
         :type => 'image/jpeg'
