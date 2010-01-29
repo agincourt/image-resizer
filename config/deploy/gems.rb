@@ -45,5 +45,7 @@ namespace :gems do
     sudo "gem install haml --no-rdoc --no-ri"
     sudo "gem install paperclip --no-rdoc --no-ri"
     sudo "gem install SystemTimer --no-rdoc --no-ri"
+    sudo "apt-get install sqlite3 libsqlite3-dev"
+    sudo "gem install sqlite3-ruby --no-rdoc --no-ri"
   end
 end

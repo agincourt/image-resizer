@@ -62,11 +62,12 @@ end
 #	Config
 #############################################################
 
-after "deploy:update_code", "deploy:update_database_yml"
+after "deploy:update_code", "deploy:update_database"
 
 namespace :deploy do
-  desc "Overwrites the database file on the server with a copy of the shared version"
-  task :update_database_yml, :roles => :app do
+  desc "Symlinks the shared DB folder, overwrites the database file on the server with a copy of the shared version"
+  task :update_database, :roles => :app do
+    run "ln -s #{deploy_to}/#{shared_dir}/db #{release_path}/db/shared"
     run "rm #{release_path}/config/database.yml && cp #{deploy_to}/#{shared_dir}/config/database.yml #{release_path}/config/database.yml && chmod 660 #{release_path}/config/database.yml"
   end
 end

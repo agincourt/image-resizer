@@ -31,11 +31,14 @@ namespace :ruby do
     # remove the source files
     sudo "rm -rf #{ruby_enterprise_version}/"
     # link up our new binaries for eacy access
+    sudo "rm /usr/bin/gem"
     sudo "ln -s /opt/#{ruby_enterprise_version}/bin/gem /usr/bin/gem"
+    sudo "rm /usr/bin/ruby"
     sudo "ln -s /opt/#{ruby_enterprise_version}/bin/ruby /usr/bin/ruby"
+    sudo "rm /usr/bin/rake"
     sudo "ln -s /opt/#{ruby_enterprise_version}/bin/rake /usr/bin/rake"
     # make our gems writable
-    sudo "chmod 660 -R /opt/#{ruby_enterprise_version}/lib/ruby/gems"
+    sudo "chmod 665 -R /opt/#{ruby_enterprise_version}/lib/ruby/gems"
     sudo "chmod 665 -R /opt/#{ruby_enterprise_version}/bin"
   end
 
