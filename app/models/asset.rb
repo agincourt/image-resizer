@@ -14,7 +14,7 @@ class Asset < ActiveRecord::Base
   validates_uniqueness_of :identifier
   
   validates_attachment_presence :attachment
-  validates_attachment_content_type :attachment, :content_type => ['image/pjpeg', 'image/gif', 'image/x-png', 'image/png', /^image\/jpe?g$/], :message => 'must be a JPEG, PNG or GIF image'
+  validates_attachment_content_type :attachment, :content_type => ['image/pjpeg', 'image/gif', 'image/x-png', 'image/png', 'image/bmp', 'image/x-windows-bmp', /^image\/jpe?g$/], :message => 'must be a JPEG, PNG, BMP or GIF image'
   validates_attachment_size :attachment, :less_than => 10.megabytes
   
   # actions
