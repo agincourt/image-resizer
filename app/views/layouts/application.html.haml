@@ -8,6 +8,12 @@
     
     = javascript_include_tag 'jquery-1.4.1.min', 'jquery.jcrop.min', 'extensions', 'application', :cache => 'base_app'
     = stylesheet_link_tag 'jquery.jcrop', 'base'
+    
+    /[if IE]
+      = stylesheet_link_tag 'ie/all'
+
+    /[if IE6]
+      = stylesheet_link_tag 'ie/ie6'
   %body
     :javascript
       var _gaq = _gaq || [];
@@ -19,5 +25,8 @@
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
       })();
+      
+    %noscript
+      %p We're really sorry, but this application doesn't work without JavaScript enabled.
     
     #content= yield
