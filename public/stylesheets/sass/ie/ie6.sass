@@ -3,3 +3,16 @@ body
 
 noscript
   background: #000 !important
+  
+#editor_controls
+  position: absolute !important
+  
+  .set
+    .cropping
+      background-image: url(/images/ie/cropping_bg.png)
+  
+    .constrain
+      background-image: url(/images/ie/unconstrained.png)
+      
+      &.active
+        background-image: url(/images/ie/constrained.png)
