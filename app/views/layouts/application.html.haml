@@ -7,12 +7,12 @@
     %title Image Editor
     
     = javascript_include_tag 'jquery-1.4.1.min', 'jquery.jcrop.min', 'extensions', 'application', :cache => 'base_app'
-    = stylesheet_link_tag 'jquery.jcrop', 'base'
+    = stylesheet_link_tag 'jquery.jcrop', 'base', :cache => 'base_app'
     
     /[if IE]
       = stylesheet_link_tag 'ie/all'
 
-    /[if IE6]
+    /[if IE 6]
       = stylesheet_link_tag 'ie/ie6'
   %body
     :javascript
