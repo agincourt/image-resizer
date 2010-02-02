@@ -1,6 +1,9 @@
 body {
   background: #3c3f48 url(/images/bg.png) center top fixed no-repeat; }
 
+img {
+  border: 0; }
+
 noscript {
   position: absolute;
   top: 0;
