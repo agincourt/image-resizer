@@ -1,7 +1,7 @@
 class AssetsController < ApplicationController
   def index
     session[:assets] ||= []
-    @assets = Asset.find(:all, :conditions => ['identifier IN (?)', session[:assets]])
+    @assets = Asset.where('identifier IN (?)', session[:assets])
   end
   
   def new

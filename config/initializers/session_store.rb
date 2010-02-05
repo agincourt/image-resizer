@@ -5,8 +5,8 @@
 # Make sure the secret is at least 30 characters and all random, 
 # no regular words or you'll be exposed to dictionary attacks.
 ActionController::Base.session = {
-  :key         => '_image-editor_session',
-  :secret      => '3e64ce5f522acd0e3abd87f6cd9f7beeb5a4ea2bc63bbd3be85f0648c8021ae00487fdeaeb64b54f2f9d2b3d9de20b2ca4f04cbb5b5c94eac51f67c60d95c8e8'
+  :key    => '_image-editor_session',
+  :secret => 'f5f2cd258c8431d28376667e442922e754eb63f3df2be2fc1cf73ef1cd0a4ec7f0f24efeda5fbfb886974a553ff444c1a9908304e9914e1f1b67c4cc64606b0c'
 }
 
 # Use the database for sessions instead of the cookie-based default,
