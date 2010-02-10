@@ -1,4 +1,6 @@
 $(document).ready(function(){
+  $('noscript').remove()
+  
   $('img#source').load(function() {
     if($('#original_width, #original_height').length == 2) {
     	$('#original_width').val($('.resizable img').width())
