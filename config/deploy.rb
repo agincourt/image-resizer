@@ -3,6 +3,13 @@ unless Capistrano::Configuration.respond_to?(:instance)
 end
 
 #############################################################
+# RVM
+#############################################################
+$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
+require 'rvm/capistrano'
+set :rvm_bin_path, "/usr/local/rvm/bin"
+
+#############################################################
 #	Application
 #############################################################
 
